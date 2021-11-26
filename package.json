@@ -10,7 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/kerhub/saved-replies.git"
   },
-  "keywords": ["github", "action", "comment", "community", "javascript"],
+  "keywords": [
+    "github",
+    "action",
+    "comment",
+    "community",
+    "javascript"
+  ],
   "author": {
     "name": "Gerome Grignon",
     "email": "gerome.grignon.lp2@gmail.com",
@@ -20,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/kerhub/saved-replies/issues"
   },
-  "homepage": "https://github.com/kerhub/saved-replies#readme"
+  "homepage": "https://github.com/kerhub/saved-replies#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0"
+  }
 }
