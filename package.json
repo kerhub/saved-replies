@@ -1,0 +1,24 @@
+{
+  "name": "saved-replies",
+  "version": "0.1.0",
+  "description": "Github Action triggering comment replies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kerhub/saved-replies.git"
+  },
+  "keywords": ["github", "action", "comment", "community", "javascript"],
+  "author": {
+    "name": "Gerome Grignon",
+    "email": "gerome.grignon.lp2@gmail.com",
+    "url": "https://github.com/geromegrignon"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kerhub/saved-replies/issues"
+  },
+  "homepage": "https://github.com/kerhub/saved-replies#readme"
+}
