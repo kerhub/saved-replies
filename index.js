@@ -42,7 +42,7 @@ const closeIssue = async () => {
 
 const addLabels = async (labels) => {
     labels.forEach( async (label) => {
-        await octokit.issues.addLabels({
+        await octokit.rest.issues.addLabels({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             issue_number: github.context.issue.number,
@@ -53,7 +53,7 @@ const addLabels = async (labels) => {
 
 const removeLabels = async (labels) => {
     labels.forEach( async (label) => {
-        await octokit.issues.removeLabel({
+        await octokit.rest.issues.removeLabel({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             issue_number: github.context.issue.number,
@@ -64,7 +64,7 @@ const removeLabels = async (labels) => {
 
 const addAssignees = async (assignees) => {
     assignees.forEach( async (assignee) => {
-        await octokit.issues.addAssignees({
+        await octokit.rest.issues.addAssignees({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             issue_number: github.context.issue.number,
@@ -75,7 +75,7 @@ const addAssignees = async (assignees) => {
 
 const removeAssignees = async (assignees) => {
     assignees.forEach( async (assignee) => {
-        await octokit.issues.removeAssignees({
+        await octokit.rest.issues.removeAssignees({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             issue_number: github.context.issue.number,
@@ -86,7 +86,7 @@ const removeAssignees = async (assignees) => {
 
 const addReviewers = async (reviewers) => {
     reviewers.forEach( async (reviewer) => {
-        await octokit.pulls.createReviewRequest({
+        await octokit.rest.pulls.createReviewRequest({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             pull_number: github.context.issue.number,
@@ -97,7 +97,7 @@ const addReviewers = async (reviewers) => {
 
 const removeReviewers = async (reviewers) => {
     reviewers.forEach( async (reviewer) => {
-        await octokit.pulls.removeRequestedReviewers({
+        await octokit.rest.pulls.removeRequestedReviewers({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             pull_number: github.context.issue.number,
