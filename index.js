@@ -86,7 +86,7 @@ const removeAssignees = async (assignees) => {
 
 const addReviewers = async (reviewers) => {
     reviewers.forEach( async (reviewer) => {
-        await octokit.rest.pulls.createReviewRequest({
+        await octokit.rest.pulls.requestReviewers({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             pull_number: github.context.issue.number,
