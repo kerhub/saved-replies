@@ -144,7 +144,7 @@ try {
         throw new Error(`Invalid state: ${state}`);
     }
 
-    if (addedLabels && addedLabels.length) {
+    if (addedLabels && addedLabels.length > 0) {
         addLabels(addedLabels);
     }
 

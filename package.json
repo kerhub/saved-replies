@@ -1,6 +1,6 @@
 {
   "name": "saved-replies",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Github Action triggering comment replies",
   "main": "index.js",
   "scripts": {
