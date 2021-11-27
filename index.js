@@ -109,6 +109,7 @@ const removeReviewers = async (reviewers) => {
 try {
     const action = core.getInput('action');
     const reply = core.getInput('reply');
+    const state = core.getInput('state');
 
     const addedLabels = core.getInput('addedLabels').split(',');
     const removedLabels = core.getInput('removedLabels').split(',');
