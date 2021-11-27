@@ -1,0 +1,38 @@
+name: 'Saved replies'
+description: 'Trigger replies on GitHub Issues and Pull Requests'
+author: 'Gerome Grignon'
+inputs:
+  token:
+    description: 'GitHub Personal Access Token'
+    required: true
+  addedLabels:
+    description: 'labels to add'
+    required: false
+  removedLabels:
+    description: 'labels to remove'
+    required: false
+  reply:
+    description: 'reply'
+    required: false
+  assigneesAdded:
+    description: 'list of assignees to add'
+    required: false
+  assigneesRemoved:
+    description: 'list of assignees to remove'
+    required: false
+  reviewersAdded:
+    description: 'list of reviewers to add'
+    required: false
+  reviewersRemoved:
+    description: 'list of reviewers to remove'
+    required: false
+  action:
+    description: 'action to perform (add or update). default to add'
+    required: true
+    default: 'add'
+  state:
+    description: 'new issue state (open or closed)'
+    required: false
+runs:
+  using: 'node12'
+  main: 'index.js'
