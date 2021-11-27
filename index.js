@@ -129,12 +129,12 @@ try {
         throw new Error(`Invalid action: ${action}`);
     }
 
-    if (state === 'open') {
+    if (state && state === 'open') {
         if (github.context.issue.state === 'open') {
             throw new Error('Issue is already open');
         }
         openIssue();
-    } else if (state === 'closed') {
+    } else if (state && state === 'closed') {
         if (github.context.issue.state === 'closed') {
             throw new Error('Issue is already closed');
         }
@@ -143,27 +143,27 @@ try {
         throw new Error(`Invalid state: ${state}`);
     }
 
-    if (addedLabels.length) {
+    if (addedLabels && addedLabels.length) {
         addLabels(addedLabels);
     }
 
-    if (removedLabels.length) {
+    if (removedLabels && removedLabels.length) {
         removeLabels(removedLabels);
     }
 
-    if (assigneesAdded.length) {
+    if (assigneesAdded && assigneesAdded.length) {
         addAssignees(assigneesAdded);
     }
 
-    if (assigneesRemoved.length) {
+    if (assigneesRemoved && assigneesRemoved.length) {
         removeAssignees(assigneesRemoved);
     }
 
-    if (reviewersAdded.length) {
+    if (reviewersAdded && reviewersAdded.length) {
         addReviewers(reviewersAdded);
     }
 
-    if (reviewersRemoved.length) {
+    if (reviewersRemoved && reviewersRemoved.length) {
         removeReviewers(reviewersRemoved);
     }
 
