@@ -41,7 +41,6 @@ const closeIssue = async () => {
 }
 
 const addLabels = async (labels) => {
-    console.log({labels });
     labels.forEach( async (label) => {
         await octokit.rest.issues.addLabels({
             owner: github.context.repo.owner,
@@ -53,7 +52,6 @@ const addLabels = async (labels) => {
 }
 
 const removeLabels = async (labels) => {
-    console.log({labels });
     labels.forEach( async (label) => {
         await octokit.rest.issues.removeLabel({
             owner: github.context.repo.owner,
@@ -65,7 +63,6 @@ const removeLabels = async (labels) => {
 }
 
 const addAssignees = async (assignees) => {
-    console.log({assignees });
     assignees.forEach( async (assignee) => {
         await octokit.rest.issues.addAssignees({
             owner: github.context.repo.owner,
@@ -77,7 +74,6 @@ const addAssignees = async (assignees) => {
 }
 
 const removeAssignees = async (assignees) => {
-    console.log({assignees });
     assignees.forEach( async (assignee) => {
         await octokit.rest.issues.removeAssignees({
             owner: github.context.repo.owner,
@@ -89,7 +85,6 @@ const removeAssignees = async (assignees) => {
 }
 
 const addReviewers = async (reviewers) => {
-    console.log({reviewers });
     reviewers.forEach( async (reviewer) => {
         await octokit.rest.pulls.requestReviewers({
             owner: github.context.repo.owner,
@@ -101,7 +96,6 @@ const addReviewers = async (reviewers) => {
 }
 
 const removeReviewers = async (reviewers) => {
-    console.log({reviewers });
     reviewers.forEach( async (reviewer) => {
         await octokit.rest.pulls.removeRequestedReviewers({
             owner: github.context.repo.owner,
@@ -112,17 +106,21 @@ const removeReviewers = async (reviewers) => {
     });
 }
 
+const formatInputList = (input) => {
+    return input.split(',').filter(item => item.trim().length);
+}
+
 try {
     const action = core.getInput('action');
     const reply = core.getInput('reply');
     const state = core.getInput('state');
 
-    const addedLabels = core.getInput('addedLabels').split(',').filter(item => item.trim().length);
-    const removedLabels = core.getInput('removedLabels').split(',').filter(item => item.trim().length);
-    const assigneesAdded = core.getInput('assigneesAdded').split(',').filter(item => item.trim().length);
-    const assigneesRemoved = core.getInput('assigneesRemoved').split(',').filter(item => item.trim().length);
-    const reviewersAdded = core.getInput('reviewersAdded').split(',').filter(item => item.trim().length);
-    const reviewersRemoved = core.getInput('reviewersRemoved').split(',').filter(item => item.trim().length);
+    const addedLabels = formatInputList(core.getInput('addedLabels'));
+    const removedLabels = formatInputList(core.getInput('removedLabels'));
+    const assigneesAdded = formatInputList(core.getInput('assigneesAdded'));
+    const assigneesRemoved = formatInputList(core.getInput('assigneesRemoved'));
+    const reviewersAdded = formatInputList(core.getInput('reviewersAdded'));
+    const reviewersRemoved = formatInputList(core.getInput('reviewersRemoved'));
 
     if (!addedLabels && !removedLabels && !reply && !assigneesAdded && !assigneesRemoved && !reviewersAdded && !reviewersRemoved && !state) {
         throw new Error('No action specified');
@@ -150,27 +148,27 @@ try {
         throw new Error(`Invalid state: ${state}`);
     }
 
-    if (addedLabels && addedLabels.length > 0) {
+    if (addedLabels.length) {
         addLabels(addedLabels);
     }
 
-    if (removedLabels && removedLabels.length > 0) {
+    if (removedLabels.length) {
         removeLabels(removedLabels);
     }
 
-    if (assigneesAdded && assigneesAdded.length > 0) {
+    if (assigneesAdded.length) {
         addAssignees(assigneesAdded);
     }
 
-    if (assigneesRemoved && assigneesRemoved.length > 0) {
+    if (assigneesRemoved.length) {
         removeAssignees(assigneesRemoved);
     }
 
-    if (reviewersAdded && reviewersAdded.length > 0) {
+    if (reviewersAdded.length) {
         addReviewers(reviewersAdded);
     }
 
-    if (reviewersRemoved && reviewersRemoved.length > 0) {
+    if (reviewersRemoved.length) {
         removeReviewers(reviewersRemoved);
     }
 

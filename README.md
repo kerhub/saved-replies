@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: add triage label
-        uses: kerhub/saved-replies@v0.2.9
+        uses: kerhub/saved-replies@v0.2.10
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           addedLabels: 'triage'
