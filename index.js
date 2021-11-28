@@ -148,23 +148,23 @@ try {
         addLabels(addedLabels);
     }
 
-    if (removedLabels && removedLabels.length) {
+    if (removedLabels && removedLabels.length > 0) {
         removeLabels(removedLabels);
     }
 
-    if (assigneesAdded && assigneesAdded.length) {
+    if (assigneesAdded && assigneesAdded.length > 0) {
         addAssignees(assigneesAdded);
     }
 
-    if (assigneesRemoved && assigneesRemoved.length) {
+    if (assigneesRemoved && assigneesRemoved.length > 0) {
         removeAssignees(assigneesRemoved);
     }
 
-    if (reviewersAdded && reviewersAdded.length) {
+    if (reviewersAdded && reviewersAdded.length > 0) {
         addReviewers(reviewersAdded);
     }
 
-    if (reviewersRemoved && reviewersRemoved.length) {
+    if (reviewersRemoved && reviewersRemoved.length > 0) {
         removeReviewers(reviewersRemoved);
     }
 
