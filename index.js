@@ -41,6 +41,7 @@ const closeIssue = async () => {
 }
 
 const addLabels = async (labels) => {
+    console.log({labels });
     labels.forEach( async (label) => {
         await octokit.rest.issues.addLabels({
             owner: github.context.repo.owner,
@@ -52,6 +53,7 @@ const addLabels = async (labels) => {
 }
 
 const removeLabels = async (labels) => {
+    console.log({labels });
     labels.forEach( async (label) => {
         await octokit.rest.issues.removeLabel({
             owner: github.context.repo.owner,
@@ -63,6 +65,7 @@ const removeLabels = async (labels) => {
 }
 
 const addAssignees = async (assignees) => {
+    console.log({assignees });
     assignees.forEach( async (assignee) => {
         await octokit.rest.issues.addAssignees({
             owner: github.context.repo.owner,
@@ -74,6 +77,7 @@ const addAssignees = async (assignees) => {
 }
 
 const removeAssignees = async (assignees) => {
+    console.log({assignees });
     assignees.forEach( async (assignee) => {
         await octokit.rest.issues.removeAssignees({
             owner: github.context.repo.owner,
@@ -85,6 +89,7 @@ const removeAssignees = async (assignees) => {
 }
 
 const addReviewers = async (reviewers) => {
+    console.log({reviewers });
     reviewers.forEach( async (reviewer) => {
         await octokit.rest.pulls.requestReviewers({
             owner: github.context.repo.owner,
@@ -96,6 +101,7 @@ const addReviewers = async (reviewers) => {
 }
 
 const removeReviewers = async (reviewers) => {
+    console.log({reviewers });
     reviewers.forEach( async (reviewer) => {
         await octokit.rest.pulls.removeRequestedReviewers({
             owner: github.context.repo.owner,
