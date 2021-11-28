@@ -117,6 +117,19 @@ try {
     const reply = core.getInput('reply');
     const state = core.getInput('state');
 
+    const addedLabelss = core.getInput('addedLabels')
+    console.log({addedLabelss });
+    const removedLabelss = core.getInput('removedLabels')
+    console.log({removedLabelss });
+    const assigneesAddeds = core.getInput('assigneesAdded')
+    console.log({assigneesAddeds });
+    const assigneesRemoveds = core.getInput('assigneesRemoved')
+    console.log({assigneesRemoveds });
+    const reviewersAddeds = core.getInput('reviewersAdded')
+    console.log({reviewersAddeds });
+    const reviewersRemoveds = core.getInput('reviewersRemoved')
+    console.log({reviewersRemoveds });
+
     const addedLabels = core.getInput('addedLabels').split(',');
     const removedLabels = core.getInput('removedLabels').split(',');
     const assigneesAdded = core.getInput('assigneesAdded').split(',');
