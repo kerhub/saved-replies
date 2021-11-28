@@ -41,18 +41,16 @@ const closeIssue = async () => {
 }
 
 const addLabels = async (labels) => {
-    labels.forEach( async (label) => {
-        await octokit.rest.issues.addLabels({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            issue_number: github.context.issue.number,
-            labels: [label]
-        });
+    await octokit.rest.issues.addLabels({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        issue_number: github.context.issue.number,
+        labels: labels
     });
 }
 
 const removeLabels = async (labels) => {
-    labels.forEach( async (label) => {
+    labels.forEach(async (label) => {
         await octokit.rest.issues.removeLabel({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
@@ -63,46 +61,38 @@ const removeLabels = async (labels) => {
 }
 
 const addAssignees = async (assignees) => {
-    assignees.forEach( async (assignee) => {
-        await octokit.rest.issues.addAssignees({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            issue_number: github.context.issue.number,
-            assignees: [assignee]
-        });
+    await octokit.rest.issues.addAssignees({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        issue_number: github.context.issue.number,
+        assignees: assignees
     });
 }
 
 const removeAssignees = async (assignees) => {
-    assignees.forEach( async (assignee) => {
-        await octokit.rest.issues.removeAssignees({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            issue_number: github.context.issue.number,
-            assignees: [assignee]
-        });
+    await octokit.rest.issues.removeAssignees({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        issue_number: github.context.issue.number,
+        assignees: assignees
     });
 }
 
 const addReviewers = async (reviewers) => {
-    reviewers.forEach( async (reviewer) => {
-        await octokit.rest.pulls.requestReviewers({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            pull_number: github.context.issue.number,
-            reviewers: [reviewer]
-        });
+    await octokit.rest.pulls.requestReviewers({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        pull_number: github.context.issue.number,
+        reviewers: reviewers
     });
 }
 
 const removeReviewers = async (reviewers) => {
-    reviewers.forEach( async (reviewer) => {
-        await octokit.rest.pulls.removeRequestedReviewers({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            pull_number: github.context.issue.number,
-            reviewers: [reviewer]
-        });
+    await octokit.rest.pulls.removeRequestedReviewers({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        pull_number: github.context.issue.number,
+        reviewers: reviewers
     });
 }
 
