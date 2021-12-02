@@ -96,6 +96,42 @@ const removeReviewers = async (reviewers) => {
     });
 }
 
+const clearAllLabels = async () => {
+    await octokit.rest.issues.removeAllLabels({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        issue_number: github.context.issue.number,
+    });
+}
+
+const clearAllAssignees = async () => {
+    const { assignees } = await octokit.rest.issues.get({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        issue_number: github.context.issue.number,
+    });
+    await octokit.rest.issues.removeAssignees({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        issue_number: github.context.issue.number,
+        assignees: assignees.map(assignee => assignee.login)
+    });
+}
+
+const clearAllReviewers = async () => {
+    const { requested_reviewers } = await octokit.rest.pulls.get({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        pull_number: github.context.issue.number,
+    });
+    await octokit.rest.pulls.removeRequestedReviewers({
+        owner: github.context.repo.owner,
+        repo: github.context.repo.repo,
+        pull_number: github.context.issue.number,
+        reviewers: requested_reviewers.map(reviewer => reviewer.login)
+    });
+}
+
 const formatInputList = (input) => {
     return input.split(',').filter(item => item.trim().length);
 }
@@ -111,6 +147,10 @@ try {
     const assigneesRemoved = formatInputList(core.getInput('assigneesRemoved'));
     const reviewersAdded = formatInputList(core.getInput('reviewersAdded'));
     const reviewersRemoved = formatInputList(core.getInput('reviewersRemoved'));
+
+    const clearLabels = core.getInput('clearLabels');
+    const clearAssignees = core.getInput('clearAssignees');
+    const clearReviewers = core.getInput('clearReviewers');
 
     if (!addedLabels && !removedLabels && !reply && !assigneesAdded && !assigneesRemoved && !reviewersAdded && !reviewersRemoved && !state) {
         throw new Error('No action specified');
@@ -136,6 +176,18 @@ try {
         closeIssue();
     } else if (state) {
         throw new Error(`Invalid state: ${state}`);
+    }
+
+    if (clearLabels === 'true') {
+        clearAllLabels();
+    }
+
+    if (clearAssignees === 'true') {
+        clearAllAssignees();
+    }
+
+    if (clearReviewers === 'true') {
+        clearAllReviewers();
     }
 
     if (addedLabels.length) {

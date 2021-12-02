@@ -6,25 +6,25 @@ inputs:
     description: 'GitHub Personal Access Token'
     required: true
   addedLabels:
-    description: 'labels to add'
+    description: 'comma seperated stringified list of labels to add'
     required: false
   removedLabels:
-    description: 'labels to remove'
+    description: 'comma seperated stringified of labels to remove'
     required: false
   reply:
     description: 'reply'
     required: false
   assigneesAdded:
-    description: 'list of assignees to add'
+    description: 'comma seperated stringified list of assignees to add'
     required: false
   assigneesRemoved:
-    description: 'list of assignees to remove'
+    description: 'comma seperated stringified list of assignees to remove'
     required: false
   reviewersAdded:
-    description: 'list of reviewers to add'
+    description: 'comma seperated stringified list of reviewers to add'
     required: false
   reviewersRemoved:
-    description: 'list of reviewers to remove'
+    description: 'comma seperated stringified list of reviewers to remove'
     required: false
   action:
     description: 'action to perform (add or update). default to add'
@@ -32,6 +32,15 @@ inputs:
     default: 'add'
   state:
     description: 'new issue state (open or closed)'
+    required: false
+  clearLabels:
+    description: 'comma seperated stringified list of assignees to remove'
+    required: false
+  clearAssignees:
+    description: 'comma seperated stringified list of assignees to remove'
+    required: false
+  clearReviewers:
+    description: 'comma seperated stringified list of assignees to remove'
     required: false
 runs:
   using: 'node12'
